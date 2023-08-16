@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-from django.utils.translation import gettext_lazy as _
 
 load_dotenv()
 
