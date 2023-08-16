@@ -39,7 +39,11 @@ msgstr "All books"
 msgid "All authors"
 msgstr "All authors"
 
+#: .\catalog\templates\catalog\book_detail.html:5
 #: .\catalog\templates\catalog\author_detail.html:5
+msgid "Title"
+msgstr "Title"
+
 #: .\catalog\templates\catalog\book_detail.html:6
 #, fuzzy
 #| msgid "Authors"
@@ -66,10 +70,6 @@ msgstr "Author List"
 #: .\catalog\templates\catalog\author_list.html:13
 msgid "There are no authors in the library."
 msgstr "There are no authors in the library."
-
-#: .\catalog\templates\catalog\book_detail.html:5
-msgid "Title"
-msgstr "Title"
 
 #: .\catalog\templates\catalog\book_detail.html:7
 msgid "Summary"
@@ -136,6 +136,18 @@ msgstr "Copies available"
 #: .\catalog\templates\index.html:15
 msgid "Authors"
 msgstr "Authors"
+
+#: .\catalog\templates\index.html:17
+msgid "You have visited this page"
+msgstr "You have visited this page"
+
+#: .\catalog\templates\index.html:17
+msgid "time"
+msgstr "time"
+
+#: .\catalog\templates\index.html:17
+msgid "s"
+msgstr "s"
 
 #: .\locallibrary\settings.py:120
 msgid "English"
