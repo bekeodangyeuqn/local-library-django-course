@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-22 13:01+0700\n"
+"POT-Creation-Date: 2023-08-22 16:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,29 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\catalog\models.py:14
+#: .\catalog\forms.py:15
+msgid "Invalid date - renewal in past"
+msgstr ""
+
+#: .\catalog\forms.py:19
+msgid "Invalid date - renewal more than 4 weeks ahead"
+msgstr ""
+
+#: .\catalog\forms.py:26
+msgid "Renewal date"
+msgstr ""
+
+#: .\catalog\forms.py:28
+msgid "Enter a date between now and 4 weeks (default 3)."
+msgstr ""
+
+#: .\catalog\models.py:15
 msgid "Enter a book genre (e.g.Science Fiction)"
 msgstr ""
 
-#: .\catalog\models.py:28
+#: .\catalog\models.py:29
 msgid "Enter a brief description of the book"
 msgstr ""
 
-#: .\catalog\models.py:30
+#: .\catalog\models.py:31
 msgid ""
 "13 character <a href=\"https://www.isbn-international.org/content/what-isbn"
 "\">ISBN number</a>"
 msgstr ""
 
-#: .\catalog\models.py:32
+#: .\catalog\models.py:33
 msgid "Select a genre for this book"
 msgstr ""
 
-#: .\catalog\models.py:52
+#: .\catalog\models.py:53
 msgid "Unique ID for this particular bookacross whole library"
 msgstr ""
 
-#: .\catalog\models.py:63
+#: .\catalog\models.py:64
 #, fuzzy
 #| msgid "Copies available"
 msgid "Book availability"
@@ -77,6 +93,21 @@ msgstr ""
 
 #: .\catalog\templates\base_generic.html:46
 msgid "Logout"
+msgstr ""
+
+#: .\catalog\templates\base_generic.html:49
+#: .\catalog\templates\catalog\bookinstance_list_manage.html:4
+msgid "Manage books"
+msgstr ""
+
+#: .\catalog\templates\catalog\author_confirm_delete.html:5
+#, fuzzy
+#| msgid "Authors"
+msgid "Delete Author"
+msgstr "Authors"
+
+#: .\catalog\templates\catalog\author_confirm_delete.html:6
+msgid "Are you sure you want to delete the author:"
 msgstr ""
 
 #: .\catalog\templates\catalog\author_detail.html:5
@@ -150,10 +181,15 @@ msgid "Borrowed books"
 msgstr ""
 
 #: .\catalog\templates\catalog\bookinstance_list_borrowed_user.html:15
+#: .\catalog\templates\catalog\bookinstance_list_manage.html:15
 #, fuzzy
 #| msgid "There are no books in the library."
 msgid "There are no books borrowed."
 msgstr "There are no books in the library."
+
+#: .\catalog\templates\catalog\bookinstance_list_manage.html:10
+msgid "Renew"
+msgstr ""
 
 #: .\catalog\templates\index.html:5
 msgid "Local Library Home"

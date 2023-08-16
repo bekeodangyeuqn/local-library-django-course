@@ -1,15 +1,20 @@
-from catalog.models import Book, Author, BookInstance, Genre
+import datetime
 from typing import Any
+from catalog.models import Book, Author, BookInstance, Genre
 
 from django.db.models.query import QuerySet
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils.translation import gettext as _
-from django.utils.translation import get_language, activate, gettext
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
+from catalog.forms import RenewBookModelForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 
@@ -87,3 +92,69 @@ class LoanedBooksByUserListView(LoginRequiredMixin, PermissionRequiredMixin, gen
             .filter(status__exact="o")
             .order_by("-due_back")
         )
+
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
+def renew_book_librarian(request, pk):
+    """View function for renewing a specific BookInstance by librarian"""
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    # if this is a POST request then process the form data
+    if request.method == 'POST':
+        form = RenewBookModelForm(request.POST)
+        # Check if form is valid
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            book_instance.due_back = form.cleaned_data['due_back']
+            book_instance.save()
+
+            return HttpResponseRedirect(reverse('manage-books'))
+
+    # if this is a GET (or anthoer method) create the default form
+    else:
+        propsed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = RenewBookModelForm(
+            initial={'due_back': propsed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+
+
+class LoanedBooksManageListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    """Generic class-based view listing books on loan to current user."""
+
+    model = BookInstance
+    permission_required = "catalog.view_list_on_loan"
+    template_name = "catalog/bookinstance_list_manage.html"
+    paginate_by = 10
+
+    def get_queryset(self):
+        return (
+            BookInstance.objects.all()
+            .filter(status__exact="o")
+            .order_by("-due_back")
+            .select_related("borrower")
+        )
+
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = ['first_name',
+              'last_name', 'date_of_birth', 'date_of_death']
+    initial = {'date_of_death': '11/06/2020'}
+
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = ['first_name',
+              'last_name', 'date_of_birth', 'date_of_death']
+
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
