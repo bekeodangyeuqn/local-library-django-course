@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-22 13:01+0700\n"
+"POT-Creation-Date: 2023-08-22 16:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\catalog\models.py:14
+#: .\catalog\forms.py:15
+msgid "Invalid date - renewal in past"
+msgstr "Ngày không hợp lệ - gia hạn trong quá khứ"
+
+#: .\catalog\forms.py:19
+msgid "Invalid date - renewal more than 4 weeks ahead"
+msgstr "Ngày không hợp lệ - gia hạn quá 4 tuần"
+
+#: .\catalog\forms.py:26
+msgid "Renewal date"
+msgstr "Ngày gia hạn"
+
+#: .\catalog\forms.py:28
+msgid "Enter a date between now and 4 weeks (default 3)."
+msgstr "Nhập một ngày giữa hiện tại và 4 tuần sau (mặc định 3)"
+
+#: .\catalog\models.py:15
 msgid "Enter a book genre (e.g.Science Fiction)"
 msgstr "Nhập thể loại sách (ví dụ Khoa học viễn tưởng)"
 
-#: .\catalog\models.py:28
+#: .\catalog\models.py:29
 msgid "Enter a brief description of the book"
 msgstr "Nhập mô tả ngắn cho sách"
 
-#: .\catalog\models.py:30
+#: .\catalog\models.py:31
 msgid ""
 "13 character <a href=\"https://www.isbn-international.org/content/what-isbn"
 "\">ISBN number</a>"
@@ -34,15 +50,15 @@ msgstr ""
 "13 ký tự <a href=\"https://www.isbn-international.org/content/what-isbn\">số "
 "IBSN</a>"
 
-#: .\catalog\models.py:32
+#: .\catalog\models.py:33
 msgid "Select a genre for this book"
 msgstr "Chọn thể loại cho sách này"
 
-#: .\catalog\models.py:52
+#: .\catalog\models.py:53
 msgid "Unique ID for this particular bookacross whole library"
 msgstr "Số định danh cho sách được dùng cho khắp thư viện"
 
-#: .\catalog\models.py:63
+#: .\catalog\models.py:64
 #, fuzzy
 #| msgid "Copies available"
 msgid "Book availability"
@@ -80,6 +96,19 @@ msgstr "Sách đã mượn của tôi"
 #: .\catalog\templates\base_generic.html:46
 msgid "Logout"
 msgstr "Đăng xuất"
+
+#: .\catalog\templates\base_generic.html:49
+#: .\catalog\templates\catalog\bookinstance_list_manage.html:4
+msgid "Manage books"
+msgstr "Quản lý mượn sách"
+
+#: .\catalog\templates\catalog\author_confirm_delete.html:5
+msgid "Delete Author"
+msgstr "Xóa tác giả"
+
+#: .\catalog\templates\catalog\author_confirm_delete.html:6
+msgid "Are you sure you want to delete the author:"
+msgstr "Bạn có chắc chắn muốn xóa tác giả này:"
 
 #: .\catalog\templates\catalog\author_detail.html:5
 #: .\catalog\templates\catalog\book_detail.html:6
@@ -148,8 +177,13 @@ msgid "Borrowed books"
 msgstr "Những quyển sách đã mượn"
 
 #: .\catalog\templates\catalog\bookinstance_list_borrowed_user.html:15
+#: .\catalog\templates\catalog\bookinstance_list_manage.html:15
 msgid "There are no books borrowed."
 msgstr "Không có sách nào được mượn."
+
+#: .\catalog\templates\catalog\bookinstance_list_manage.html:10
+msgid "Renew"
+msgstr ""
 
 #: .\catalog\templates\index.html:5
 msgid "Local Library Home"
