@@ -1,9 +1,14 @@
-from django.shortcuts import render
 from catalog.models import Book, Author, BookInstance, Genre
+from typing import Any
+
+from django.db.models.query import QuerySet
+from django.shortcuts import render
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
 from django.views import generic
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 
@@ -68,3 +73,17 @@ class AuthorDetailView(generic.DetailView):
 def author_detail_view(request, primary_key):
     author = get_object_or_404(Author, pk=primary_key)
     return render(request, 'catalog/auhtor_detail.html', context={'author': author})
+
+
+class LoanedBooksByUserListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = "catalog/bookinstance_list_borrowed_user.html"
+    permission_required = "catalog.can_mark_returned"
+    paginate_by = 10
+
+    def get_queryset(self):
+        return (
+            BookInstance.objects.filter(borrower=self.request.user)
+            .filter(status__exact="o")
+            .order_by("-due_back")
+        )
