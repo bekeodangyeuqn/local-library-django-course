@@ -30,3 +30,15 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('catalog/', include('catalog.urls')),
 )
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+
+urlpatterns += i18n_patterns(
+    path('accounts/', include('django.contrib.auth.urls')),
+)
+
+urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),
+)
