@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-22 16:51+0700\n"
+"POT-Creation-Date: 2023-08-23 16:52+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,6 +172,18 @@ msgstr "Danh sách các đầu sách"
 msgid "There are no books in the library."
 msgstr "Không có sách nào trong thư viện"
 
+#: .\catalog\templates\catalog\book_renew_librarian.html:5
+msgid "Renew:"
+msgstr "Gia hạn:"
+
+#: .\catalog\templates\catalog\book_renew_librarian.html:6
+msgid "Borrower:"
+msgstr "Người mượn:"
+
+#: .\catalog\templates\catalog\book_renew_librarian.html:8
+msgid "Due date:"
+msgstr "Ngày hết hạn:"
+
 #: .\catalog\templates\catalog\bookinstance_list_borrowed_user.html:5
 msgid "Borrowed books"
 msgstr "Những quyển sách đã mượn"
@@ -183,7 +195,7 @@ msgstr "Không có sách nào được mượn."
 
 #: .\catalog\templates\catalog\bookinstance_list_manage.html:10
 msgid "Renew"
-msgstr ""
+msgstr "Gia hạn"
 
 #: .\catalog\templates\index.html:5
 msgid "Local Library Home"
